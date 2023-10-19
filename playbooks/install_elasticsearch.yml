@@ -1,13 +1,13 @@
-- name: install elasticsearch on debian hosts
+- name: Instalar Elasticsearch en nodos Debian
   hosts: debian_elasticsearch
   become: yes
   tasks:
-    - name: Update package list
+    - name: Actualizar lista de paquetes
       apt:
         update_cache: yes
       become: yes
 
-    - name: Install required packages
+    - name: Instalar paquetes necesarios
       apt:
         name:
           - default-jre
@@ -16,31 +16,26 @@
         state: present
       become: yes
 
-    - name: Add the Elasticsearch public key
+    - name: Agregar la clave pública de Elasticsearch
       apt_key:
         url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
         state: present
       become: yes
 
-    - name: Add the Elasticsearch repository
+    - name: Agregar el repositorio de Elasticsearch
       apt_repository:
         repo: deb https://artifacts.elastic.co/packages/7.x/apt stable main
         state: present
       become: yes
 
-    - name: Update package list again
+    - name: Actualizar lista de paquetes nuevamente
       apt:
         update_cache: yes
       become: yes
 
-    - name: Install Elasticsearch
+    - name: Instalar Elasticsearch
       apt:
         name: elasticsearch
         state: present
       become: yes
 
-    - name: Enable and start Elasticsearch
-      systemd:
-        name: elasticsearch
-        enabled: yes
-        state: started

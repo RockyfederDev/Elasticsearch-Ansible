@@ -1,0 +1,11 @@
+- name: Iniciar Elasticsearch y configurar la red
+  hosts: debian_elasticsearch
+  become: yes
+  tasks:
+    - name: Habilitar y arrancar Elasticsearch
+      systemd:
+        name: elasticsearch
+        enabled: yes
+        state: started
+      become: true
+      when: inventory_hostname in groups['debian_elasticsearch']

@@ -1,0 +1,25 @@
+---
+- name: Configurar clúster de Elasticsearch
+  hosts: debian_elasticsearch  # Asegúrate de definir tu grupo de hosts aquí
+  become: yes
+  tasks:
+    - name: Configurar el archivo elasticsearch.yml
+      lineinfile:
+        path: /etc/elasticsearch/elasticsearch.yml
+        line: "{{ item }}"
+        insertafter: '^cluster.name:'
+      with_items:
+        - "node.name: {{ inventory_hostname }}"
+        - "path.data: /var/lib/elasticsearch"
+        - "path.logs: /var/log/elasticsearch"
+        - "network.host: {{ ansible_host }}"
+        - "discovery.seed_hosts: {{ groups['debian_elasticsearch'] | join(',') }}"
+        - "cluster.initial_master_nodes: {{ groups['debian_elasticsearch'][0] }}"
+      notify: Restart Elasticsearch
+
+  handlers:
+    - name: Restart Elasticsearch
+      service:
+        name: elasticsearch
+        state: restarted
+

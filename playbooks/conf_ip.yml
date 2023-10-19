@@ -1,0 +1,21 @@
+- name: Configure Elasticsearch to use local IP
+  hosts: debian_elasticsearch
+  tasks:
+    - name: Get the IP of the local machine
+      ansible.builtin.setup:
+      register: local_ip_info
+
+    - name: Extract the local IP
+      set_fact:
+        local_ip: "{{ local_ip_info.ansible_facts['ansible_default_ipv4']['address'] }}"
+
+    - name: Crear elasticsearch.yml en línea
+      ansible.builtin.copy:
+        content: |
+          cluster.name: my-cluster
+          node.name: {{ inventory_hostname }}
+          network.host: {{ local_ip }}
+          http.port: 9200
+          # Otras configuraciones de Elasticsearch aquí
+        dest: /etc/elasticsearch/elasticsearch.yml
+      become: yes
