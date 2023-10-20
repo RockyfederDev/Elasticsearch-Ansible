@@ -29,16 +29,16 @@ c) Un servidor de aplicaciones.
 4. ¿Por qué es importante utilizar Ansible para instalar Elasticsearch en lugar
 de configurarlo manualmente en cada nodo?
 
-a) Acelera el proceso de instalación y configuración. x
+a) Acelera el proceso de instalación y configuración. X
 
-b) Garantiza que todos los nodos tengan configuraciones idénticas. x
+b) Garantiza que todos los nodos tengan configuraciones idénticas. X
 
 c) Facilita la depuración de errores.
 
 Documentación instalacion
 
 
-- name: Configure and Install Elasticsearch on Debian nodes
+  name: Configure and Install Elasticsearch on Debian nodes
   
   hosts: debian_elasticsearch
   
