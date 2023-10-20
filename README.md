@@ -1,25 +1,38 @@
 # Elasticsearch-Ansible
 
 Parte Teórica (Preguntas de Opción Múltiple)
+
 1. ¿Qué es DevOps?
+   
 a) Una herramienta de automatización de tareas.
+
 b) Una cultura y práctica que enfatiza la colaboración entre desarrollo y operaciones. X
+
 c) Una plataforma de orquestación de contenedores.
 
-2. ¿Cuál es el propósito principal de Ansible en el contexto de DevOps?
+3. ¿Cuál es el propósito principal de Ansible en el contexto de DevOps?
+   
 a) Gestionar contenedores Docker.
+
 b) Automatizar la configuración y el despliegue de sistemas y aplicaciones. X
+
 c) Administrar bases de datos.
 
-3. ¿Cuál es el propósito de Elasticsearch en una infraestructura DevOps?
+5. ¿Cuál es el propósito de Elasticsearch en una infraestructura DevOps?
+   
 a) Una herramienta de seguimiento de problemas y errores.
+
 b) Un motor de búsqueda y análisis de datos en tiempo real. X
+
 c) Un servidor de aplicaciones.
 
-4. ¿Por qué es importante utilizar Ansible para instalar Elasticsearch en lugar de configurarlo
+7. ¿Por qué es importante utilizar Ansible para instalar Elasticsearch en lugar de configurarlo
 manualmente en cada nodo?
+
 a) Acelera el proceso de instalación y configuración. X
+
 b) Garantiza que todos los nodos tengan configuraciones idénticas. X
+
 c) Facilita la depuración de errores.
 
 Documentación instalacion
