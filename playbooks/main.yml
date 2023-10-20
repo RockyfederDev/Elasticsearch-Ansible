@@ -1,0 +1,85 @@
+---
+- name: Configure and Install Elasticsearch on Debian nodes
+  hosts: debian_elasticsearch
+  become: yes
+  tasks:
+    - name: Package update
+      apt:
+        upgrade: dist
+
+    - name: Update package list
+      apt:
+        update_cache: yes
+
+    - name: Install required packages
+      apt:
+        name:
+          - default-jre
+          - apt-transport-https
+          - software-properties-common
+        state: present
+
+    - name: Add the Elasticsearch public key
+      apt_key:
+        url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+        state: present
+
+    - name: Add the Elasticsearch repository
+      apt_repository:
+        repo: deb https://artifacts.elastic.co/packages/7.x/apt stable main
+        state: present
+
+    - name: Update package list again
+      apt:
+        update_cache: yes
+
+    - name: Install Elasticsearch
+      apt:
+        name: elasticsearch
+        state: present
+
+    - name: Get the IP of the local machine
+      ansible.builtin.setup
+      register: local_ip_info
+
+    - name: Extract the local IP
+      set_fact:
+        local_ip: "{{ local_ip_info.ansible_facts['ansible_default_ipv4']['address'] }}"
+
+    - name: Create elasticsearch.yml
+      ansible.builtin.copy:
+        content: |
+          cluster.name: my-cluster
+          node.name: {{ inventory_hostname }}
+          network.host: {{ local_ip }}
+          http.port: 9200
+          # Otras configuraciones de Elasticsearch aquí
+        dest: /etc/elasticsearch/elasticsearch.yml
+      become: yes
+
+    - name: Configure the elasticsearch.yml file
+      lineinfile:
+        path: /etc/elasticsearch/elasticsearch.yml
+        line: "{{ item }}"
+        insertafter: '^cluster.name:'
+      with_items:
+        - "node.name: {{ inventory_hostname }}"
+        - "path.data: /var/lib/elasticsearch"
+        - "path.logs: /var/log/elasticsearch"
+        - "network.host: {{ ansible_host }}"
+        - "discovery.seed_hosts: {{ groups['debian_elasticsearch'] | join(',') }}"
+        - "cluster.initial_master_nodes: {{ groups['debian_elasticsearch'][0] }}"
+      notify: Restart Elasticsearch
+
+    - name: Enable and start Elasticsearch
+      systemd:
+        name: elasticsearch
+        enabled: yes
+        state: started
+      when: inventory_hostname in groups['debian_elasticsearch']
+
+  handlers:
+    - name: Restart Elasticsearch
+      service:
+        name: elasticsearch
+        state: restarted
