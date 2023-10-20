@@ -22,20 +22,20 @@ c) Administrar bases de datos.
 
 a) Una herramienta de seguimiento de problemas y errores.
 
-** b) Un motor de búsqueda y análisis de datos en tiempo real.
+b) Un motor de búsqueda y análisis de datos en tiempo real. X
 
 c) Un servidor de aplicaciones.
 
 4. ¿Por qué es importante utilizar Ansible para instalar Elasticsearch en lugar
 de configurarlo manualmente en cada nodo?
 
-a) Acelera el proceso de instalación y configuración.
+a) Acelera el proceso de instalación y configuración. x
 
-b) Garantiza que todos los nodos tengan configuraciones idénticas.
+b) Garantiza que todos los nodos tengan configuraciones idénticas. x
 
 c) Facilita la depuración de errores.
 
-#Documentación instalacion
+Documentación instalacion
 
 
 - name: Configure and Install Elasticsearch on Debian nodes
