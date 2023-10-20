@@ -2,7 +2,7 @@
 
 Parte Teórica (Preguntas de Opción Múltiple)
 
-**1. ¿Qué es DevOps?
+** 1. ¿Qué es DevOps?
    
 a) Una herramienta de automatización de tareas.
 
