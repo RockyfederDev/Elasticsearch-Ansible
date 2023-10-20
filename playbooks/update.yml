@@ -1,7 +1,7 @@
-- name: Actualizar el sistema de maquinas
+- name: Update the machine system
   hosts: debian_elasticsearch
   become: yes
   tasks:
-    - name: Actualizacion de paquetes
+    - name: Package update
       apt:
         upgrade: dist

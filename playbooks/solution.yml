@@ -1,9 +1,9 @@
 ---
-- name: Configurar clúster de Elasticsearch
+- name: Set up Elasticsearch cluster
   hosts: debian_elasticsearch  # Asegúrate de definir tu grupo de hosts aquí
   become: yes
   tasks:
-    - name: Configurar el archivo elasticsearch.yml
+    - name: Configure the elasticsearch.yml file
       lineinfile:
         path: /etc/elasticsearch/elasticsearch.yml
         line: "{{ item }}"

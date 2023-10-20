@@ -9,7 +9,7 @@
       set_fact:
         local_ip: "{{ local_ip_info.ansible_facts['ansible_default_ipv4']['address'] }}"
 
-    - name: Crear elasticsearch.yml en línea
+    - name: Create elasticsearch.yml online
       ansible.builtin.copy:
         content: |
           cluster.name: my-cluster

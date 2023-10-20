@@ -1,8 +1,8 @@
-- name: Iniciar Elasticsearch y configurar la red
+- name: Start Elasticsearch and configure the network
   hosts: debian_elasticsearch
   become: yes
   tasks:
-    - name: Habilitar y arrancar Elasticsearch
+    - name: Enable and start Elasticsearch
       systemd:
         name: elasticsearch
         enabled: yes
