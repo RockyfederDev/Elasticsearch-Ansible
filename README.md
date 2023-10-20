@@ -2,62 +2,69 @@
 
 Parte Teórica (Preguntas de Opción Múltiple)
 
-1. ¿Qué es DevOps?
+** 1. ¿Qué es DevOps?
    
 a) Una herramienta de automatización de tareas.
 
-b) Una cultura y práctica que enfatiza la colaboración entre desarrollo y operaciones. X
+** b) Una cultura y práctica que enfatiza la colaboración entre desarrollo y operaciones. X
 
 c) Una plataforma de orquestación de contenedores.
 
-3. ¿Cuál es el propósito principal de Ansible en el contexto de DevOps?
+2. ¿Cuál es el propósito principal de Ansible en el contexto de DevOps?
    
-a) Gestionar contenedores Docker.
+** a) Gestionar contenedores Docker.
 
-b) Automatizar la configuración y el despliegue de sistemas y aplicaciones. X
+** b) Automatizar la configuración y el despliegue de sistemas y aplicaciones. X
 
 c) Administrar bases de datos.
 
-5. ¿Cuál es el propósito de Elasticsearch en una infraestructura DevOps?
-   
+** 3. ¿Cuál es el propósito de Elasticsearch en una infraestructura DevOps?
+
 a) Una herramienta de seguimiento de problemas y errores.
 
-b) Un motor de búsqueda y análisis de datos en tiempo real. X
+** b) Un motor de búsqueda y análisis de datos en tiempo real.
 
 c) Un servidor de aplicaciones.
 
-7. ¿Por qué es importante utilizar Ansible para instalar Elasticsearch en lugar de configurarlo
-manualmente en cada nodo?
+** 4. ¿Por qué es importante utilizar Ansible para instalar Elasticsearch en lugar
+de configurarlo manualmente en cada nodo?
 
-a) Acelera el proceso de instalación y configuración. X
+** a) Acelera el proceso de instalación y configuración.
 
-b) Garantiza que todos los nodos tengan configuraciones idénticas. X
+** b) Garantiza que todos los nodos tengan configuraciones idénticas.
 
 c) Facilita la depuración de errores.
 
-Documentación instalacion
+#Documentación instalacion
 
+```yml
 - name: Configure and Install Elasticsearch on Debian nodes
   hosts: debian_elasticsearch
   become: yes
   tasks:
+```
 
-Paso 1: Encabezado del playbook
+** Paso 1: Encabezado del playbook
 
 name: Nombre del playbook, "Configure and Install Elasticsearch on Debian nodes".
 hosts: Los hosts en los que se ejecutará este playbook, en este caso, "debian_elasticsearch".
 become: yes: El playbook se ejecutará con privilegios de superusuario.
 
+```yml
     - name: Package update
       apt:
         upgrade: dist
+```
 
-Paso 2: Actualización de paquetes
+** Paso 2: Actualización de paquetes
 
 Utiliza el módulo apt para actualizar todos los paquetes del sistema.
+
+```yml
     - name: Update package list
       apt:
         update_cache: yes
+```
 
 Paso 3: Actualización de la lista de paquetes
 
